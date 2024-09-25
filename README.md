@@ -1,0 +1,1 @@
+Synchronize shirts products from WordPress to OrderDesk for FulfillEngine
