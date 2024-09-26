@@ -22,6 +22,7 @@ def get_products():
     
     params = {
         "per_page": 100,
+        "status": "publish"
     }
     
     products_list = []
@@ -41,6 +42,7 @@ def get_products():
         products = response.json()
         
         for product in products:
+            product_color = product['attributes'][1]['options'][0]
             if product['type'] == 'variable':
                 variations_url = f"{url}/{product['id']}/variations"
                 variations_response = requests.get(
@@ -56,7 +58,7 @@ def get_products():
                             'sku': variation['sku'],
                             'price': variation['price'],
                             'weight': variation['weight'],
-                            'color': next((attr['option'] for attr in variation['attributes'] if attr['name'].lower() == 'color'), None),
+                            'color': product_color,
                             'size': next((attr['option'] for attr in variation['attributes'] if attr['name'].lower() == 'size'), None)
                         }
                         products_list.append(variation_data)
@@ -66,7 +68,7 @@ def get_products():
                     'sku': product['sku'],
                     'price': product['price'],
                     'weight': product['weight'],
-                    'color': next((attr['options'][0] for attr in product['attributes'] if attr['name'].lower() == 'color'), None),
+                    'color': product_color,
                     'size': next((attr['options'][0] for attr in product['attributes'] if attr['name'].lower() == 'size'), None)
                 }
                 products_list.append(product_data)

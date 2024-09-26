@@ -31,8 +31,8 @@ def get_inventory_items():
         print(response.text)
         return []
 
-def get_orderdesk_print_sku(color, size):
-    with open('../bc3001-skus.csv', 'r') as file:
+def get_orderdesk_print_sku(color: str, size: str):
+    with open("D:/Projects/PropCoWebsite/Products/wp-orderdesk-sync/bc3001-skus.csv", 'r') as file:
         csv_reader = csv.DictReader(file)
         for row in csv_reader:
             if row['Color'].lower() == color.lower() and row['Size'].upper() == size.upper():
@@ -65,12 +65,11 @@ def create_inventory_item(product):
     else:
         print_location = "front"
 
-    # {'print_sku': '1476455386', 'print_url': '', 'print_location': 'front'},
     data = {
         "name": product['name'],
         "code": product['sku'],
-        "price": 0,
-        "stock": 0,
+        "price": product['price'],
+        "stock": product['weight'],
         "metadata": {
             "print_sku": print_sku,
             "print_url": print_url,

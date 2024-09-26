@@ -12,10 +12,10 @@ def main():
     # Get inventory items from OrderDesk
     orderdesk_inventory = get_inventory_items()
 
-    # print("# WordPress Items:")
-    # for p in wordpress_products:
-    #     if p['sku'] != None:
-    #         print(p['name'], p['sku'], p['size'], p['price'], p['weight'])
+    print("# WordPress Items:")
+    for p in wordpress_products:
+        if p['sku'] != None:
+            print(p['name'], p['sku'], p['size'], p['price'], p['weight'], p['color'])
 
     # print("# OrderDesk Items:")
     # for i in orderdesk_inventory:
