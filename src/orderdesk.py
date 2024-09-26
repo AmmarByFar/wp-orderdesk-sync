@@ -57,7 +57,7 @@ def create_inventory_item(product):
     # Get the DropBox URL for artwork from user
     print_url = None
     while (print_url == None):
-        print_url = input("DropBox image URL for " + product['sku'] + ":\n")
+        print_url = input("==========================\nDropBox image URL for " + product['sku'] + ":\n")
 
     # Print location is always center unless it's the propco logo t-shirt
     if ("logo" in product['sku']):
@@ -70,6 +70,7 @@ def create_inventory_item(product):
         "code": product['sku'],
         "price": product['price'],
         "stock": product['weight'],
+        "location": "fulfillengine",
         "metadata": {
             "print_sku": print_sku,
             "print_url": print_url,
@@ -79,7 +80,7 @@ def create_inventory_item(product):
     
     response = requests.post(url, headers=headers, json=data)
     
-    if response.status_code == 200:
+    if response.status_code == 201:
         return response.json()['inventory_item']
     else:
         print(f"Error creating inventory item: {response.status_code}")
