@@ -57,7 +57,7 @@ def create_inventory_item(product):
     # Get the DropBox URL for artwork from user
     print_url = None
     while (print_url == None):
-        print_url = input("DropBox image URL for " + product['sku'])
+        print_url = input("DropBox image URL for " + product['sku'] + ":\n")
 
     # Print location is always center unless it's the propco logo t-shirt
     if ("logo" in product['sku']):

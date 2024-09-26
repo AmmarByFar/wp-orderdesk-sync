@@ -12,10 +12,10 @@ def main():
     # Get inventory items from OrderDesk
     orderdesk_inventory = get_inventory_items()
 
-    print("# WordPress Items:")
-    for p in wordpress_products:
-        if p['sku'] != None:
-            print(p['name'], p['sku'], p['size'], p['price'], p['weight'], p['color'])
+    # print("# WordPress Items:")
+    # for p in wordpress_products:
+    #     if p['sku'] != None:
+    #         print(p['name'], p['sku'], p['size'], p['price'], p['weight'], p['color'])
 
     # print("# OrderDesk Items:")
     # for i in orderdesk_inventory:
@@ -26,6 +26,10 @@ def main():
 
     # Find products in WordPress that don't exist in OrderDesk
     new_products = [product for product in wordpress_products if product['sku'] not in orderdesk_skus]
+
+    print('Products no in OrderDesk: ')
+    for n in new_products:
+        print(n['sku'])
 
     # Create new inventory items in OrderDesk
     for product in new_products:
